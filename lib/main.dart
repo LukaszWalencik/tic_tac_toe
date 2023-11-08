@@ -20,12 +20,12 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainMenuScreen(),
       routes: {
         MainMenuScreen.routeName: (context) => const MainMenuScreen(),
         CreateRoomScreen.routeName: (context) => const CreateRoomScreen(),
         JoinRoomScreen.routeName: (context) => const JoinRoomScreen()
       },
+      initialRoute: MainMenuScreen.routeName,
     );
   }
 }
