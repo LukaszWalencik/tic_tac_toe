@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/responsive/responsive.dart';
+import 'package:tic_tac_toe/screens/create_room_screen.dart';
 import 'package:tic_tac_toe/widgets/custom_button.dart';
 
 class MainMenuScreen extends StatelessWidget {
@@ -15,7 +16,11 @@ class MainMenuScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CustomButton(onTap: () {}, text: 'Create Room'),
+              CustomButton(
+                  onTap: () {
+                    Navigator.pushNamed(context, CreateRoomScreen.routeName);
+                  },
+                  text: 'Create Room'),
               const SizedBox(height: 10),
               CustomButton(onTap: () {}, text: 'Join Room')
             ],
