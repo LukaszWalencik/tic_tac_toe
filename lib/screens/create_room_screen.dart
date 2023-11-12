@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/responsive/responsive.dart';
+import 'package:tic_tac_toe/widgets/custom_button.dart';
 import 'package:tic_tac_toe/widgets/custom_text.dart';
 import 'package:tic_tac_toe/widgets/custom_textfield.dart';
 
@@ -32,6 +33,8 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
               SizedBox(height: size.height * 0.08),
               CustomTextField(
                   controller: _nameController, hintText: 'Enter Player Name'),
+              SizedBox(height: size.height * 0.05),
+              CustomButton(onTap: () {}, text: 'Create')
             ],
           ),
         ),
