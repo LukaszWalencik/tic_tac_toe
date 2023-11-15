@@ -9,6 +9,11 @@ const app = express();
 var server = http.createServer(app);
 var io = socket(server);
 
+io.on('connection', (socket)=> {
+    console.log("Socket Connected");
+    socket.on('createRoom',({playername})=>{
+        console.log(playername);});
+});
 // Middle wear : manipulate data coming from client to server
 app.use(express.json()); //It will convert all incoming data to json format
 
