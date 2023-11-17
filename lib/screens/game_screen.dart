@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class GameScreen extends StatefulWidget {
+  static String routeName = '/game';
   const GameScreen({super.key});
 
   @override
