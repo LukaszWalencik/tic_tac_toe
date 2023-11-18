@@ -16,6 +16,13 @@ class CreateRoomScreen extends StatefulWidget {
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
   final SocketMethod _socketMethod = SocketMethod();
+
+  @override
+  void initState() {
+    _socketMethod.createRoomSuccessListener(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
