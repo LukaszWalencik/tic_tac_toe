@@ -25,4 +25,11 @@ class SocketMethod {
       Navigator.pushNamed(context, GameScreen.routeName);
     });
   }
+
+  void joinRoom(String playerName, String roomID) {
+    if (playerName.trim().isNotEmpty && roomID.isNotEmpty) {
+      _socketClient
+          .emit("joinRoom", {'playername': playerName, 'roomID': roomID});
+    }
+  }
 }
