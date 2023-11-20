@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/resources/socket_methods.dart';
 import 'package:tic_tac_toe/responsive/responsive.dart';
 import 'package:tic_tac_toe/widgets/custom_button.dart';
 import 'package:tic_tac_toe/widgets/custom_text.dart';
@@ -15,6 +16,14 @@ class JoinRoomScreen extends StatefulWidget {
 class _JoinRoomScreenState extends State<JoinRoomScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _gameIdController = TextEditingController();
+
+  final SocketMethod _socketMethod = SocketMethod();
+  @override
+  void initState() {
+    _socketMethod.errorOccuredListener(context);
+    _socketMethod.joinRoomSuccessListener(context);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
