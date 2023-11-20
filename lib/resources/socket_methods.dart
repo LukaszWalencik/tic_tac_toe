@@ -32,4 +32,13 @@ class SocketMethod {
           .emit("joinRoom", {'playername': playerName, 'roomID': roomID});
     }
   }
+
+  void joinRoomSuccessListener(BuildContext context) {
+    _socketClient.on('joinRoomSuccess', (room) {
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(room);
+      print(room);
+      Navigator.pushNamed(context, GameScreen.routeName);
+    });
+  }
 }
