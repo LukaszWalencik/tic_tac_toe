@@ -48,7 +48,12 @@ class _JoinRoomScreenState extends State<JoinRoomScreen> {
               CustomTextField(
                   controller: _gameIdController, hintText: 'Enter Game ID'),
               SizedBox(height: size.height * 0.05),
-              CustomButton(onTap: () {}, text: 'Join')
+              CustomButton(
+                  onTap: () {
+                    _socketMethod.joinRoom(
+                        _nameController.text, _gameIdController.text);
+                  },
+                  text: 'Join')
             ],
           ),
         ),
