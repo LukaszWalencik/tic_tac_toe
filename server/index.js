@@ -47,6 +47,7 @@ if(roomID.match(/^[0-9a-fA-f]{24}$/)){
 let room = await Room.findById(roomID);
 if(room == null){
     socket.emit('errorOccured', 'No game room found with that ID')
+    return;
 }
 if(room.isJoin){
     let player = {playername: playername, socketID: socket.id, playerType: 'O'};
@@ -56,6 +57,7 @@ if(room.isJoin){
 room.isJoin = false;
 room= await room.save();
 io.to(roomID).emit('joinRoomSuccess', room);
+io.to(roomID).emit('updatePlayers', room.players);
 } else { socket.emit('errorOccured', 'The game is already in progress. Try another room.')}
 
     } catch(e){console.log(e)}
