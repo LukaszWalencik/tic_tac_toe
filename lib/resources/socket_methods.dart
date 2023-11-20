@@ -18,12 +18,15 @@ class SocketMethod {
   }
 
   void createRoomSuccessListener(BuildContext context) {
-    _socketClient.on("createRoomSuccess", (room) {
-      Provider.of<RoomDataProvider>(context, listen: false)
-          .updateRoomData(room);
-      print(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
-    });
+    _socketClient.on(
+      "createRoomSuccess",
+      (room) {
+        Provider.of<RoomDataProvider>(context, listen: false)
+            .updateRoomData(room);
+        print(room);
+        Navigator.pushNamed(context, GameScreen.routeName);
+      },
+    );
   }
 
   void joinRoom(String playerName, String roomID) {
@@ -34,11 +37,27 @@ class SocketMethod {
   }
 
   void joinRoomSuccessListener(BuildContext context) {
-    _socketClient.on('joinRoomSuccess', (room) {
-      Provider.of<RoomDataProvider>(context, listen: false)
-          .updateRoomData(room);
-      print(room);
-      Navigator.pushNamed(context, GameScreen.routeName);
-    });
+    _socketClient.on(
+      'joinRoomSuccess',
+      (room) {
+        Provider.of<RoomDataProvider>(context, listen: false)
+            .updateRoomData(room);
+        print(room);
+        Navigator.pushNamed(context, GameScreen.routeName);
+      },
+    );
+  }
+
+  void errorOccuredListener(BuildContext context) {
+    _socketClient.on(
+      'errorOccured',
+      (data) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(data),
+          ),
+        );
+      },
+    );
   }
 }
