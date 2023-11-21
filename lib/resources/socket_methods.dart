@@ -67,4 +67,10 @@ class SocketMethod {
       Provider.of<RoomDataProvider>(context).updatePlayer2(playersData[1]);
     });
   }
+
+  void updateRoomListener(BuildContext context) {
+    socketClient.on('updateRoom', (room) {
+      Provider.of<RoomDataProvider>(context).updateRoomData(room);
+    });
+  }
 }
