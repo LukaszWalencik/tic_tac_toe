@@ -2,12 +2,12 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class PlayerModel {
-  final String playerName;
+  final String playername;
   final String socketID;
   final double points;
   final String playerType;
   PlayerModel({
-    required this.playerName,
+    required this.playername,
     required this.socketID,
     required this.points,
     required this.playerType,
@@ -15,7 +15,7 @@ class PlayerModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'playerName': playerName,
+      'playerName': playername,
       'socketID': socketID,
       'points': points,
       'playerType': playerType,
@@ -24,7 +24,7 @@ class PlayerModel {
 
   factory PlayerModel.fromMap(Map<String, dynamic> map) {
     return PlayerModel(
-      playerName: map['playerName'] ?? '',
+      playername: map['playername'] ?? '',
       socketID: map['socketID'] ?? '',
       points: map['points']?.toDouble() ?? 0,
       playerType: map['playerType'] ?? '',
