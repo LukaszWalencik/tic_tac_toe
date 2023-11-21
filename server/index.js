@@ -25,7 +25,7 @@ io.on('connection', (socket)=> {
         // Save room data in mongoDB
         room= await room.save();
         // Save room id (_id) which is retured after saving
-        const roomID = room._id.toString;
+        const roomID = room._id.toString();
         // this socket will listen only whoever emnits evebts in this roomID
         socket.join(roomID);
         // Tell client that eroom has been created
