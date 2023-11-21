@@ -10,16 +10,16 @@ class SocketMethod {
   final _socketClient = SocketClient.instance.socket!;
   Socket get socketClient => _socketClient;
 
-  void createRoom(String playerName) {
-    if (playerName.isNotEmpty) {
+  void createRoom(String playername) {
+    if (playername.trim().isNotEmpty) {
       //Emit an event so that server can listen to it.
-      _socketClient.emit("createRoom", {'playername': playerName});
+      _socketClient.emit('createRoom', {'playername': playername});
     }
   }
 
   void createRoomSuccessListener(BuildContext context) {
     _socketClient.on(
-      "createRoomSuccess",
+      'createRoomSuccess',
       (room) {
         Provider.of<RoomDataProvider>(context, listen: false)
             .updateRoomData(room);
@@ -29,10 +29,10 @@ class SocketMethod {
     );
   }
 
-  void joinRoom(String playerName, String roomID) {
-    if (playerName.trim().isNotEmpty && roomID.isNotEmpty) {
+  void joinRoom(String playername, String roomID) {
+    if (playername.trim().isNotEmpty && roomID.isNotEmpty) {
       _socketClient
-          .emit("joinRoom", {'playername': playerName, 'roomID': roomID});
+          .emit('joinRoom', {'playername': playername, 'roomID': roomID});
     }
   }
 
