@@ -58,6 +58,7 @@ room.isJoin = false;
 room= await room.save();
 io.to(roomID).emit('joinRoomSuccess', room);
 io.to(roomID).emit('updatePlayers', room.players);
+io.to(roomID).emit('updateRoom', room);
 } else { socket.emit('errorOccured', 'The game is already in progress. Try another room.')}
 
     } catch(e){console.log(e)}
