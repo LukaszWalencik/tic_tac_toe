@@ -37,33 +37,33 @@ io.on('connection', (socket)=> {
         };
         
         console.log(playername);});
+        socket.on('joinRoom', async ({playername, roomID})=>{
+            try{
+        if(roomID.match(/^[0-9a-fA-f]{24}$/)){
+            socket.emit('errorOccured', 'Please enter a valid room ID')
+            return;
+        }
+        let room = await Room.findById(roomID);
+        if(room == null){
+            socket.emit('errorOccured', 'No game room found with that ID')
+            return;
+        }
+        if(room.isJoin){
+            let player = {playername: playername, socketID: socket.id, playerType: 'O'};
+            socket.join(roomID);
+            room.players.push(player);
+        
+        room.isJoin = false;
+        room= await room.save();
+        io.to(roomID).emit('joinRoomSuccess', room);
+        io.to(roomID).emit('updatePlayers', room.players);
+        io.to(roomID).emit('updateRoom', room);
+        } else { socket.emit('errorOccured', 'The game is already in progress. Try another room.')}
+        
+            } catch(e){console.log(e)}
+        });
+        
 });
-socket.on('joinRoom', async ({playername, roomID})=>{
-    try{
-if(roomID.match(/^[0-9a-fA-f]{24}$/)){
-    socket.emit('errorOccured', 'Please enter a valid room ID')
-    return;
-}
-let room = await Room.findById(roomID);
-if(room == null){
-    socket.emit('errorOccured', 'No game room found with that ID')
-    return;
-}
-if(room.isJoin){
-    let player = {playername: playername, socketID: socket.id, playerType: 'O'};
-    socket.join(roomID);
-    room.players.push(player);
-
-room.isJoin = false;
-room= await room.save();
-io.to(roomID).emit('joinRoomSuccess', room);
-io.to(roomID).emit('updatePlayers', room.players);
-io.to(roomID).emit('updateRoom', room);
-} else { socket.emit('errorOccured', 'The game is already in progress. Try another room.')}
-
-    } catch(e){console.log(e)}
-});
-
 
 // Middle wear : manipulate data coming from client to server
 app.use(express.json()); //It will convert all incoming data to json format
