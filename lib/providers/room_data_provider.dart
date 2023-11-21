@@ -6,10 +6,10 @@ class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> get roomData => _roomData;
 
   PlayerModel _playerModel1 =
-      PlayerModel(playerName: '', socketID: '', points: 0, playerType: ')');
+      PlayerModel(playername: '', socketID: '', points: 0, playerType: ')');
 
   PlayerModel _playerModel2 =
-      PlayerModel(playerName: '', socketID: '', points: 0, playerType: 'X');
+      PlayerModel(playername: '', socketID: '', points: 0, playerType: 'X');
 
   PlayerModel get playerModel1 => _playerModel1;
   PlayerModel get playerModel2 => _playerModel2;
