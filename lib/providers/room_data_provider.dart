@@ -32,4 +32,10 @@ class RoomDataProvider extends ChangeNotifier {
     _playerModel2 = PlayerModel.fromMap(player2Data);
     notifyListeners();
   }
+
+  void updateDisplayElements(int index, String choice) {
+    _displayElements[index] = choice;
+    _filledBoxes += 1;
+    notifyListeners();
+  }
 }
