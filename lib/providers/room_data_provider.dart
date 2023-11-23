@@ -6,6 +6,9 @@ class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> get roomData => _roomData;
   List<String> _displayElements = ['', '', '', '', '', '', '', '', ''];
   int _filledBoxes = 0;
+
+  List<String> get displayElements => _displayElements;
+  int get filledBoxes => _filledBoxes;
   PlayerModel _playerModel1 =
       PlayerModel(playername: '', socketID: '', points: 0, playerType: ')');
 
