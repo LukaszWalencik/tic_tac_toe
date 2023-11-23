@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/providers/room_data_provider.dart';
-import 'package:tic_tac_toe/widgets/custom_textfield.dart';
 
 class WaitingLobby extends StatefulWidget {
   const WaitingLobby({super.key});
