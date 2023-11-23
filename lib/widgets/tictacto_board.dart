@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tic_tac_toe/providers/room_data_provider.dart';
+import 'package:tic_tac_toe/resources/socket_methods.dart';
 
 class TicTacToeBoard extends StatefulWidget {
   const TicTacToeBoard({super.key});
@@ -8,8 +11,10 @@ class TicTacToeBoard extends StatefulWidget {
 }
 
 class _TicTacToeBoardState extends State<TicTacToeBoard> {
+  SocketMethod socketMethod = SocketMethod();
   @override
   Widget build(BuildContext context) {
+    RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
     final size = MediaQuery.of(context).size;
     return ConstrainedBox(
       constraints: BoxConstraints(
@@ -20,20 +25,26 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
         gridDelegate:
             SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 9),
         itemBuilder: (context, index) {
-          return Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: Colors.white24,
+          return GestureDetector(
+            onTap: () {
+              socketMethod.updateGrid(index, roomDataProvider.roomData['_id'],
+                  roomDataProvider.displayElements);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white24,
+                ),
               ),
-            ),
-            child: Center(
-              child: Text(
-                'X',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 100,
-                    shadows: [Shadow(color: Colors.blue, blurRadius: 40)]),
+              child: Center(
+                child: Text(
+                  'X',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 100,
+                      shadows: [Shadow(color: Colors.blue, blurRadius: 40)]),
+                ),
               ),
             ),
           );
