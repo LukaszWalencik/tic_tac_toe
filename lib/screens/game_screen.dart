@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/providers/room_data_provider.dart';
 import 'package:tic_tac_toe/resources/socket_methods.dart';
 import 'package:tic_tac_toe/widgets/scoreboard.dart';
+import 'package:tic_tac_toe/widgets/tictacto_board.dart';
 import 'package:tic_tac_toe/widgets/waiting_lobby.dart';
 
 class GameScreen extends StatefulWidget {
@@ -32,7 +33,10 @@ class _GameScreenState extends State<GameScreen> {
           : const SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: [Scoreboard()],
+                children: [
+                  Scoreboard(),
+                  TicTacToeBoard(),
+                ],
               ),
             ),
     );
