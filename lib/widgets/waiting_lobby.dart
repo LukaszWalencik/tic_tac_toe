@@ -11,8 +11,8 @@ class WaitingLobby extends StatefulWidget {
 }
 
 class _WaitingLobbyState extends State<WaitingLobby> {
-  late TextEditingController idController = TextEditingController();
-
+  // late TextEditingController idController = TextEditingController();
+  late String idController;
   @override
   void initState() {
     idController =
@@ -32,19 +32,20 @@ class _WaitingLobbyState extends State<WaitingLobby> {
           const SizedBox(height: 50),
           const Text('Waiting for another player to join'),
           const SizedBox(height: 20),
-          CustomTextField(
-            controller: idController,
-            hintText: '',
-            isReadOnly: true,
-          )
+          Text(idController)
+          // CustomTextField(
+          //   controller: idController,
+          //   hintText: '',
+          //   isReadOnly: true,
+          // )
         ],
       ),
     );
   }
 
-  @override
-  void dispose() {
-    idController.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   idController.dispose();
+  //   super.dispose();
+  // }
 }
