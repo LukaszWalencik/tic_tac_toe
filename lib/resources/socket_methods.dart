@@ -73,4 +73,10 @@ class SocketMethod {
       Provider.of<RoomDataProvider>(context).updateRoomData(room);
     });
   }
+
+  void updateGrid(int index, String roomId, List<String> displayElements) {
+    if (displayElements[index] == '') {
+      socketClient.emit('tap', {'index': index, 'roomId': roomId});
+    }
+  }
 }
