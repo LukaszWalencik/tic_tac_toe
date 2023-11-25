@@ -30,12 +30,14 @@ class _GameScreenState extends State<GameScreen> {
     return Scaffold(
       body: roomDataProvider.roomData['isJoin']
           ? const WaitingLobby()
-          : const SafeArea(
+          : SafeArea(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Scoreboard(),
-                  TicTacToeBoard(),
+                  const Scoreboard(),
+                  const TicTacToeBoard(),
+                  Text(
+                      "${roomDataProvider.roomData['turn']['playername']}'s turn")
                 ],
               ),
             ),
