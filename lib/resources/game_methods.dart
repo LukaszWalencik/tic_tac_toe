@@ -77,6 +77,9 @@ class GameMethods {
         roomDataProvider.displayElements[2] != '') {
       winner == roomDataProvider.displayElements[2];
     }
+    if (winner == '') {
+      showGameDialog(context, 'DRAW');
+    }
 
     if (winner != '') {
       if (roomDataProvider.playerModel1.playerType == winner) {
