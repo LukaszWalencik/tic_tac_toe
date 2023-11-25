@@ -64,14 +64,17 @@ class SocketMethod {
 
   void updatePlayerListener(BuildContext context) {
     _socketClient.on("updatePlayers", (playersData) {
-      Provider.of<RoomDataProvider>(context).updatePlayer1(playersData[0]);
-      Provider.of<RoomDataProvider>(context).updatePlayer2(playersData[1]);
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updatePlayer1(playersData[0]);
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updatePlayer2(playersData[1]);
     });
   }
 
   void updateRoomListener(BuildContext context) {
     socketClient.on("updateRoom", (room) {
-      Provider.of<RoomDataProvider>(context).updateRoomData(room);
+      Provider.of<RoomDataProvider>(context, listen: false)
+          .updateRoomData(room);
     });
   }
 
