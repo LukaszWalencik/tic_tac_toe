@@ -33,5 +33,31 @@ class GameMethods {
         roomDataProvider.displayElements[6] != '') {
       winner == roomDataProvider.displayElements[6];
     }
+
+    //Check vertically
+
+    if (roomDataProvider.displayElements[0] ==
+            roomDataProvider.displayElements[3] &&
+        roomDataProvider.displayElements[0] ==
+            roomDataProvider.displayElements[6] &&
+        roomDataProvider.displayElements[0] != '') {
+      winner == roomDataProvider.displayElements[0];
+    }
+
+    if (roomDataProvider.displayElements[1] ==
+            roomDataProvider.displayElements[4] &&
+        roomDataProvider.displayElements[1] ==
+            roomDataProvider.displayElements[7] &&
+        roomDataProvider.displayElements[1] != '') {
+      winner == roomDataProvider.displayElements[1];
+    }
+
+    if (roomDataProvider.displayElements[2] ==
+            roomDataProvider.displayElements[5] &&
+        roomDataProvider.displayElements[2] ==
+            roomDataProvider.displayElements[8] &&
+        roomDataProvider.displayElements[2] != '') {
+      winner == roomDataProvider.displayElements[2];
+    }
   }
 }
