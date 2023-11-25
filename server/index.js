@@ -63,7 +63,26 @@ io.on('connection', (socket)=> {
         
             } catch(e){console.log(e)}
         });
+
+
+        sockety.on('tap', async ({index, roomID}) => {
+            try { 
+                let room = await Room.findById(roomID);
+            let choice = room.turn.playerType;
+        if (room.turnIndex == 0){
+            room.turn = room.players[1];
+            room.turnIndex =1;
+        } else {
+        room.turn = room.players[0];
+        room.turnIndex =0;
+    }
+    room = await room.save();
+    io.to(roomID).emit('tapped', {index, choice, room});
+}catch(e){ console.log(e)
+}
+    
         
+});
 });
 
 // Middle wear : manipulate data coming from client to server
@@ -81,4 +100,4 @@ const PORT = process.env.PORT || 3000;
 
 server.listen(PORT, '0.0.0.0', ()=> {
     console.log('Server running on port ${PORT}');
-});
+})
