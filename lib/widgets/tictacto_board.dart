@@ -21,34 +21,39 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
         maxHeight: size.height * 0.7,
         maxWidth: 500,
       ),
-      child: GridView.builder(
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 9),
-        itemBuilder: (context, index) {
-          return GestureDetector(
-            onTap: () {
-              socketMethod.updateGrid(index, roomDataProvider.roomData['_id'],
-                  roomDataProvider.displayElements);
-            },
-            child: Container(
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.white24,
+      child: AbsorbPointer(
+        // if true then cannot clic. If false its clicable.
+        absorbing: roomDataProvider.roomData['turn']['socketID'] !=
+            socketMethod.socketClient.id,
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 9),
+          itemBuilder: (context, index) {
+            return GestureDetector(
+              onTap: () {
+                socketMethod.updateGrid(index, roomDataProvider.roomData['_id'],
+                    roomDataProvider.displayElements);
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.white24,
+                  ),
+                ),
+                child: const Center(
+                  child: Text(
+                    'X',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 100,
+                        shadows: [Shadow(color: Colors.blue, blurRadius: 40)]),
+                  ),
                 ),
               ),
-              child: Center(
-                child: Text(
-                  'X',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 100,
-                      shadows: [Shadow(color: Colors.blue, blurRadius: 40)]),
-                ),
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }
