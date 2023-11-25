@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tic_tac_toe/providers/room_data_provider.dart';
+import 'package:tic_tac_toe/widgets/custom_textfield.dart';
 
 class WaitingLobby extends StatefulWidget {
   const WaitingLobby({super.key});
@@ -10,12 +11,13 @@ class WaitingLobby extends StatefulWidget {
 }
 
 class _WaitingLobbyState extends State<WaitingLobby> {
-  // late TextEditingController idController = TextEditingController();
-  late String idController;
+  late TextEditingController idController;
+  // late String idController;
   @override
   void initState() {
-    idController =
-        Provider.of<RoomDataProvider>(context, listen: false).roomData['_id'];
+    idController = TextEditingController(
+        text: Provider.of<RoomDataProvider>(context, listen: false)
+            .roomData['_id']);
     super.initState();
   }
 
@@ -31,20 +33,20 @@ class _WaitingLobbyState extends State<WaitingLobby> {
           const SizedBox(height: 50),
           const Text('Waiting for another player to join'),
           const SizedBox(height: 20),
-          Text(idController)
-          // CustomTextField(
-          //   controller: idController,
-          //   hintText: '',
-          //   isReadOnly: true,
-          // )
+          // Text(idController)
+          CustomTextField(
+            controller: idController,
+            hintText: '',
+            isReadOnly: true,
+          )
         ],
       ),
     );
   }
 
-  // @override
-  // void dispose() {
-  //   idController.dispose();
-  //   super.dispose();
-  // }
+  @override
+  void dispose() {
+    idController.dispose();
+    super.dispose();
+  }
 }
