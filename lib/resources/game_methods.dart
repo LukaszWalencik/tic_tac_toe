@@ -8,5 +8,30 @@ class GameMethods {
     RoomDataProvider roomDataProvider =
         Provider.of<RoomDataProvider>(context, listen: false);
     String winner = ''; //Name of plater or player display element  'X' or 'O'
+
+    //Check horizontally
+    if (roomDataProvider.displayElements[0] ==
+            roomDataProvider.displayElements[1] &&
+        roomDataProvider.displayElements[0] ==
+            roomDataProvider.displayElements[2] &&
+        roomDataProvider.displayElements[0] != '') {
+      winner == roomDataProvider.displayElements[0];
+    }
+
+    if (roomDataProvider.displayElements[3] ==
+            roomDataProvider.displayElements[4] &&
+        roomDataProvider.displayElements[3] ==
+            roomDataProvider.displayElements[5] &&
+        roomDataProvider.displayElements[3] != '') {
+      winner == roomDataProvider.displayElements[3];
+    }
+
+    if (roomDataProvider.displayElements[6] ==
+            roomDataProvider.displayElements[7] &&
+        roomDataProvider.displayElements[6] ==
+            roomDataProvider.displayElements[8] &&
+        roomDataProvider.displayElements[6] != '') {
+      winner == roomDataProvider.displayElements[6];
+    }
   }
 }
