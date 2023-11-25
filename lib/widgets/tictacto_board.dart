@@ -12,6 +12,13 @@ class TicTacToeBoard extends StatefulWidget {
 
 class _TicTacToeBoardState extends State<TicTacToeBoard> {
   SocketMethod socketMethod = SocketMethod();
+
+  @override
+  void initState() {
+    socketMethod.updateGridListener(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     RoomDataProvider roomDataProvider = Provider.of<RoomDataProvider>(context);
