@@ -65,7 +65,7 @@ io.on('connection', (socket)=> {
         });
 
 
-        sockety.on('tap', async ({index, roomID}) => {
+        socket.on('tap', async ({index, roomID}) => {
             try { 
                 let room = await Room.findById(roomID);
             let choice = room.turn.playerType;
