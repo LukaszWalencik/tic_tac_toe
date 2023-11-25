@@ -16,7 +16,7 @@ io.on('connection', (socket)=> {
         try{
             // Create a Room object
             let room= new Room();
-            let player = {socketID: socket.socketID, playername: playername, playerType: 'X',
+            let player = {socketID: socket.id, playername: playername, playerType: 'X',
             };
 
         // Add properties in room object
@@ -34,20 +34,21 @@ io.on('connection', (socket)=> {
         } 
         catch(e){
             console.log(e);
-        };
+        };});
         
-        console.log(playername);});
+        // console.log(playername);}
+
         socket.on('joinRoom', async ({playername, roomID})=>{
             try{
-        if(roomID.match(/^[0-9a-fA-f]{24}$/)){
+        if(!roomID.match(/^[0-9a-fA-f]{24}$/)){
             socket.emit('errorOccured', 'Please enter a valid room ID')
             return;
         }
         let room = await Room.findById(roomID);
-        if(room == null){
-            socket.emit('errorOccured', 'No game room found with that ID')
-            return;
-        }
+        // if(room == null){
+        //     socket.emit('errorOccured', 'No game room found with that ID')
+        //     return;
+        // }
         if(room.isJoin){
             let player = {playername: playername, socketID: socket.id, playerType: 'O'};
             socket.join(roomID);
