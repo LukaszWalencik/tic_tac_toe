@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tic_tac_toe/providers/room_data_provider.dart';
+import 'package:tic_tac_toe/utils/utils.dart';
 
 class GameMethods {
   void checkWinner(BuildContext context, Socket socketClient) {
@@ -75,6 +76,17 @@ class GameMethods {
             roomDataProvider.displayElements[6] &&
         roomDataProvider.displayElements[2] != '') {
       winner == roomDataProvider.displayElements[2];
+    }
+
+    if (winner != '') {
+      if (roomDataProvider.playerModel1.playerType == winner) {
+        showGameDialog(context,
+            '${roomDataProvider.playerModel1.playername} won the round');
+        socketClient.emit('winner', {
+          'winnerSocketID': roomDataProvider.playerModel1.socketID,
+          'roomID': roomDataProvider.roomData['_id']
+        });
+      }
     }
   }
 }
