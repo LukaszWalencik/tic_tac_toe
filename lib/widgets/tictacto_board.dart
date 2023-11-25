@@ -33,8 +33,9 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
         absorbing: roomDataProvider.roomData['turn']['socketID'] !=
             socketMethod.socketClient.id,
         child: GridView.builder(
+          itemCount: 9,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 9),
+              crossAxisCount: 3),
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
