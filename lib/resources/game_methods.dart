@@ -59,5 +59,22 @@ class GameMethods {
         roomDataProvider.displayElements[2] != '') {
       winner == roomDataProvider.displayElements[2];
     }
+
+    //Check diagonally
+    if (roomDataProvider.displayElements[0] ==
+            roomDataProvider.displayElements[4] &&
+        roomDataProvider.displayElements[0] ==
+            roomDataProvider.displayElements[8] &&
+        roomDataProvider.displayElements[0] != '') {
+      winner == roomDataProvider.displayElements[0];
+    }
+
+    if (roomDataProvider.displayElements[2] ==
+            roomDataProvider.displayElements[4] &&
+        roomDataProvider.displayElements[2] ==
+            roomDataProvider.displayElements[6] &&
+        roomDataProvider.displayElements[2] != '') {
+      winner == roomDataProvider.displayElements[2];
+    }
   }
 }
