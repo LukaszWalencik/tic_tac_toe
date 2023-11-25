@@ -74,9 +74,9 @@ class SocketMethod {
     });
   }
 
-  void updateGrid(int index, String roomId, List<String> displayElements) {
+  void updateGrid(int index, String roomID, List<String> displayElements) {
     if (displayElements[index] == '') {
-      socketClient.emit('tap', {'index': index, 'roomId': roomId});
+      socketClient.emit('tap', {'index': index, 'roomID': roomID});
     }
   }
 }
