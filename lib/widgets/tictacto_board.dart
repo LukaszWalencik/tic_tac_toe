@@ -40,14 +40,22 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
                     color: Colors.white24,
                   ),
                 ),
-                child: const Center(
+                child: Center(
                   child: Text(
-                    'X',
+                    roomDataProvider.displayElements[index],
                     style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 100,
-                        shadows: [Shadow(color: Colors.blue, blurRadius: 40)]),
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 100,
+                      shadows: [
+                        Shadow(
+                            color:
+                                roomDataProvider.displayElements[index] == '0'
+                                    ? Colors.blue
+                                    : Colors.red,
+                            blurRadius: 40),
+                      ],
+                    ),
                   ),
                 ),
               ),
