@@ -86,6 +86,13 @@ class GameMethods {
           'winnerSocketID': roomDataProvider.playerModel1.socketID,
           'roomID': roomDataProvider.roomData['_id']
         });
+      } else {
+        showGameDialog(context,
+            '${roomDataProvider.playerModel2.playername} won the round');
+        socketClient.emit('winner', {
+          'winnerSocketID': roomDataProvider.playerModel2.socketID,
+          'roomID': roomDataProvider.roomData['_id']
+        });
       }
     }
   }
