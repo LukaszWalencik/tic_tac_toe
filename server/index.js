@@ -83,6 +83,22 @@ io.on('connection', (socket)=> {
     
         
 });
+socket.on('winner', async ({winnerSocketID, roomID})=> {
+    try{
+let room = await Room.findById(roomID);
+let player = room.players.find((player)=> player.socketID == winnerSocketID);
+player.points +1;
+room = await room.save();
+// if game reach the number of rounds that can be played
+if(player.points >= room.maxRounds){
+    io.to(roomID).emit('endGame', player);
+} else {
+    io.to(roomID).emit('pointIncrease', player);
+}
+    } catch(e){
+        console.log(e);
+    }
+})
 });
 
 // Middle wear : manipulate data coming from client to server
