@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/resources/game_methods.dart';
 
 void showGameDialog(BuildContext context, String text) {
   showDialog(
@@ -9,7 +10,10 @@ void showGameDialog(BuildContext context, String text) {
         title: Text(text),
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              GameMethods().clearBoard(context);
+              Navigator.pop(context);
+            },
             child: const Text('Play Again'),
           ),
         ],
