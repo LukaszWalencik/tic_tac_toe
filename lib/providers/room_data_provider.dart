@@ -9,6 +9,8 @@ class RoomDataProvider extends ChangeNotifier {
 
   List<String> get displayElements => _displayElements;
   int get filledBoxes => _filledBoxes;
+  bool _absorbingValue = true;
+  bool get absorbingValue => _absorbingValue;
   PlayerModel _playerModel1 =
       PlayerModel(playername: '', socketID: '', points: 0, playerType: ')');
 
@@ -17,6 +19,10 @@ class RoomDataProvider extends ChangeNotifier {
 
   PlayerModel get playerModel1 => _playerModel1;
   PlayerModel get playerModel2 => _playerModel2;
+
+  void updateAbsorbingToTrue() {
+    _absorbingValue = true;
+  }
 
   void updateRoomData(Map<String, dynamic> data) {
     _roomData = data;
