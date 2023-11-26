@@ -15,13 +15,13 @@ class SocketMethod {
   void createRoom(String playername) {
     if (playername.trim().isNotEmpty) {
       //Emit an event so that server can listen to it.
-      _socketClient.emit("createRoom", {'playername': playername});
+      _socketClient.emit('createRoom', {'playername': playername});
     }
   }
 
   void createRoomSuccessListener(BuildContext context) {
     _socketClient.on(
-      "createRoomSuccess",
+      'createRoomSuccess',
       (room) {
         Provider.of<RoomDataProvider>(context, listen: false)
             .updateRoomData(room);
@@ -34,13 +34,13 @@ class SocketMethod {
   void joinRoom(String playername, String roomID) {
     if (playername.trim().isNotEmpty && roomID.isNotEmpty) {
       _socketClient
-          .emit("joinRoom", {'playername': playername, 'roomID': roomID});
+          .emit('joinRoom', {'playername': playername, 'roomID': roomID});
     }
   }
 
   void joinRoomSuccessListener(BuildContext context) {
     _socketClient.on(
-      "joinRoomSuccess",
+      'joinRoomSuccess',
       (room) {
         Provider.of<RoomDataProvider>(context, listen: false)
             .updateRoomData(room);
@@ -52,7 +52,7 @@ class SocketMethod {
 
   void errorOccuredListener(BuildContext context) {
     _socketClient.on(
-      "errorOccured",
+      'errorOccured',
       (data) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -64,7 +64,7 @@ class SocketMethod {
   }
 
   void updatePlayerListener(BuildContext context) {
-    _socketClient.on("updatePlayers", (playersData) {
+    _socketClient.on('updatePlayers', (playersData) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updatePlayer1(playersData[0]);
       Provider.of<RoomDataProvider>(context, listen: false)
@@ -73,7 +73,7 @@ class SocketMethod {
   }
 
   void updateRoomListener(BuildContext context) {
-    socketClient.on("updateRoom", (room) {
+    socketClient.on('updateRoom', (room) {
       Provider.of<RoomDataProvider>(context, listen: false)
           .updateRoomData(room);
     });
@@ -86,7 +86,7 @@ class SocketMethod {
   }
 
   void updateGridListener(BuildContext context) {
-    _socketClient.on("tapped", (data) {
+    _socketClient.on('tapped', (data) {
       RoomDataProvider roomDataProvider =
           Provider.of<RoomDataProvider>(context, listen: false);
       roomDataProvider.updateDisplayElements(data['index'], data['choice']);

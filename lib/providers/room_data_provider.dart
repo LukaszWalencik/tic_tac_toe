@@ -4,22 +4,28 @@ import 'package:tic_tac_toe/resources/socket_methods.dart';
 
 class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> _roomData = {};
-  Map<String, dynamic> get roomData => _roomData;
+
   List<String> _displayElements = ['', '', '', '', '', '', '', '', ''];
+
   int _filledBoxes = 0;
 
-  List<String> get displayElements => _displayElements;
-  int get filledBoxes => _filledBoxes;
   bool _absorbingValue = true;
+
   bool get absorbingValue => _absorbingValue;
+
   PlayerModel _playerModel1 =
-      PlayerModel(playername: '', socketID: '', points: 0, playerType: ')');
+      PlayerModel(playername: '', socketID: '', points: 0, playerType: 'X');
 
   PlayerModel _playerModel2 =
-      PlayerModel(playername: '', socketID: '', points: 0, playerType: 'X');
+      PlayerModel(playername: '', socketID: '', points: 0, playerType: '0');
 
   PlayerModel get playerModel1 => _playerModel1;
   PlayerModel get playerModel2 => _playerModel2;
+
+  Map<String, dynamic> get roomData => _roomData;
+
+  List<String> get displayElements => _displayElements;
+  int get filledBoxes => _filledBoxes;
 
   void updateAbsorbingToTrue() {
     _absorbingValue = true;
