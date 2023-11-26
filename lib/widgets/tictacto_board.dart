@@ -66,10 +66,10 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
                           Shadow(
                             blurRadius: 40,
                             color:
-                                roomDataProvider.displayElements[index] == "0"
+                                roomDataProvider.displayElements[index] == "O"
                                     ? Colors.blue
                                     : Colors.red,
-                          ),
+                          )
                         ],
                       ),
                     ),
