@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/models/player_model.dart';
+import 'package:tic_tac_toe/resources/socket_methods.dart';
 
 class RoomDataProvider extends ChangeNotifier {
   Map<String, dynamic> _roomData = {};
@@ -26,6 +27,8 @@ class RoomDataProvider extends ChangeNotifier {
 
   void updateRoomData(Map<String, dynamic> data) {
     _roomData = data;
+    _absorbingValue =
+        _roomData['turn']['socketID'] != SocketMethod().socketClient.id;
     notifyListeners();
   }
 
