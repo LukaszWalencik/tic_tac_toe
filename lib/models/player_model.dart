@@ -15,7 +15,7 @@ class PlayerModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'playerName': playername,
+      'playername': playername,
       'socketID': socketID,
       'points': points,
       'playerType': playerType,
