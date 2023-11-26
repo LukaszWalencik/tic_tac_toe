@@ -30,8 +30,9 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
       ),
       child: AbsorbPointer(
         // if true then cannot clic. If false its clicable.
-        absorbing: roomDataProvider.roomData['turn']['socketID'] !=
-            socketMethod.socketClient.id,
+        absorbing: roomDataProvider.absorbingValue,
+        // absorbing: roomDataProvider.roomData['turn']['socketID'] !=
+        //     socketMethod.socketClient.id,
         child: GridView.builder(
           itemCount: 9,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -39,6 +40,10 @@ class _TicTacToeBoardState extends State<TicTacToeBoard> {
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
+                if (roomDataProvider.absorbingValue) {
+                  return;
+                }
+                roomDataProvider.updateAbsorbingToTrue();
                 socketMethod.updateGrid(index, roomDataProvider.roomData['_id'],
                     roomDataProvider.displayElements);
               },
