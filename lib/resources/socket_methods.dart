@@ -107,4 +107,11 @@ class SocketMethod {
       }
     });
   }
+
+  void endGame(BuildContext context) {
+    _socketClient.on('endGame', (playerData) {
+      showGameDialog(context, '${playerData['playerName']} won the game');
+      Navigator.popUntil(context, (route) => false);
+    });
+  }
 }
