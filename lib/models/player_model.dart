@@ -24,7 +24,7 @@ class PlayerModel {
 
   factory PlayerModel.fromMap(Map<String, dynamic> map) {
     return PlayerModel(
-      playername: map['playername'] ?? 'BRAK',
+      playername: map['playername'] ?? '',
       socketID: map['socketID'] ?? '',
       points: map['points']?.toDouble() ?? 0,
       playerType: map['playerType'] ?? '',

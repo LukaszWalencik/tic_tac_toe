@@ -17,7 +17,7 @@ class RoomDataProvider extends ChangeNotifier {
       PlayerModel(playername: '', socketID: '', points: 0, playerType: 'X');
 
   PlayerModel _playerModel2 =
-      PlayerModel(playername: '', socketID: '', points: 0, playerType: '0');
+      PlayerModel(playername: '', socketID: '', points: 0, playerType: 'O');
 
   PlayerModel get playerModel1 => _playerModel1;
   PlayerModel get playerModel2 => _playerModel2;
