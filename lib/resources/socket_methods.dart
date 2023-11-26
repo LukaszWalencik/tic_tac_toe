@@ -4,6 +4,7 @@ import 'package:socket_io_client/socket_io_client.dart';
 import 'package:tic_tac_toe/providers/room_data_provider.dart';
 import 'package:tic_tac_toe/resources/game_methods.dart';
 import 'package:tic_tac_toe/screens/game_screen.dart';
+import 'package:tic_tac_toe/utils/utils.dart';
 
 import 'socket_client.dart';
 
@@ -92,6 +93,18 @@ class SocketMethod {
       roomDataProvider.updateRoomData(data['room']);
       //Check for winner
       GameMethods().checkWinner(context, socketClient);
+    });
+  }
+
+  void pointIncreaseListener(BuildContext context) {
+    _socketClient.on('pointIncrease', (playerData) {
+      RoomDataProvider roomDataProvider =
+          Provider.of<RoomDataProvider>(context, listen: false);
+      if (playerData['socketID'] == roomDataProvider.playerModel1.socketID) {
+        roomDataProvider.updatePlayer1(playerData);
+      } else {
+        roomDataProvider.updatePlayer2(playerData);
+      }
     });
   }
 }
